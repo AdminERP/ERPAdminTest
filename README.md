@@ -7,7 +7,9 @@ Sistema de planificación de recursos empresariales
 ## Empezando
 Se deben instalar los paquetes, dependencias y demás.
 
+Se recomienda python >= 3.5
  - Verificar que tengan python 3.5.2
+	 - `python3.5 --version`
  - [Instalar](https://www.python.org/download/releases/3.5.2/) python 3.5.2 (en caso de no tenerlo)
  - Crear un ambiente virtual
 	 - `virtualenv nombre_ambiente --python python3.x`

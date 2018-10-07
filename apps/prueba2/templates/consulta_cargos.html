@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block contenido %}
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nombre del cargo</th>
+            <th>Descripcion
+            <th>Hay vacantes?</th>
+            <th>Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cargo in lista_cargos %}
+            <tr>
+                <td>{{ cargo.name }}</td>
+                <td>{{ cargo.description }}</td>
+                <td>{{ cargo.has_vacants }}</td>
+                <td>
+                    <div class="btn-group">
+
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
+                            Acciones
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                            <div class="ripple-container"></div>
+
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{% url 'modificar_cargo' cargo.id %}">Consultar/Modificar</a></li>
+
+                            <li class="divider"></li>
+                            <li><a href="#">Eliminar</a></li>
+                        </ul>
+                    </div>
+
+                </td>
+                <!--
+                    <td><a href="{% url 'modificar_cargo' cargo.id %}">Modificar</a></td>
+                -->
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+{% endblock %}

@@ -33,7 +33,11 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-        {{ form.media.css }}
+
+  <link rel="stylesheet" href="{% static 'plugins/toastr-master/build/toastr.css' %}">
+  <link rel="stylesheet" href="{% static 'dist/css/estilos_personalizados.css' %}">
+  {{ form.media.css }}
+
         {% block css %}{% endblock css %}
 </head>
 <!--
@@ -402,9 +406,28 @@ desired effect
 </script>
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-{{ form.media.js }}
-{% block js %}{% endblock js %}
 
+<script src="{% static 'plugins/toastr-master/build/toastr.min.js' %}"></script>
+{{ form.media.js }}
+
+<script>
+    {% for msg in messages %}
+        $(document).ready(function () {
+            setTimeout(function () {
+                toastr.options = {
+                    "closeButtons": true,
+                    "progressBar": true,
+                    "preventDuplicates": true,
+                    "showEasing": "swing",
+                    "ExtendedTimeout": 60000,
+                    "timeOut": 30000
+                }
+                toastr["{{ msg.tags }}"]("{{ msg }}")
+            }, 500);
+        });
+    {% endfor %}
+</script>
+{% block js %}{% endblock js %}
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
